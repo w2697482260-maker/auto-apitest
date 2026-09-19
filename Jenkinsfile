@@ -50,11 +50,14 @@ pipeline {
                         }
                     }
 
-                    sh """
-                        . .venv/bin/activate
-                        export TEST_ENV=${params.ENV}
-                        pytest ${markers} --reruns 1 --reruns-delay 2
-                    """
+                    // 使用 catchError 确保即使测试失败也继续生成报告
+                    catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                        sh """
+                            . .venv/bin/activate
+                            export TEST_ENV=${params.ENV}
+                            pytest ${markers} --reruns 1 --reruns-delay 2
+                        """
+                    }
                 }
             }
         }
