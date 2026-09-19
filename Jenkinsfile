@@ -46,7 +46,7 @@ pipeline {
                         if (markers == "") {
                             markers = "-m ${params.STOCK_TYPE}"
                         } else {
-                            markers = "-m \"${params.TEST_TYPE} and ${params.STOCK_TYPE}\""
+                            markers = "-m \\\"${params.TEST_TYPE} and ${params.STOCK_TYPE}\\\""
                         }
                     }
 
