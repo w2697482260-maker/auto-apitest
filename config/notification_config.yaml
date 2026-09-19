@@ -22,9 +22,7 @@ feishu:
 jenkins:
   # Allure 报告发布目录（Jenkins服务器上的路径）
   allure_report_path: "/var/jenkins_home/workspace/${JOB_NAME}/reports/allure-report"
-  # Jenkins 报告 URL 模板
-  report_url_template: "http://192.168.2.104:8080/job/${JOB_NAME}/${BUILD_NUMBER}/allure"
 
-  # 报告访问URL（需要配置Jenkins的Allure插件）
+  # Jenkins 报告 URL 模板
   # 格式: http://your-jenkins-url/job/${JOB_NAME}/${BUILD_NUMBER}/allure
-  report_url_template: "http://jenkins.example.com/job/${JOB_NAME}/${BUILD_NUMBER}/allure"
+  report_url_template: "http://192.168.2.104:8080/job/${JOB_NAME}/${BUILD_NUMBER}/allure"
