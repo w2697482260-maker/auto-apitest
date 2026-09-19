@@ -1,0 +1,34 @@
+# 测试用户配置
+# 注意：敏感信息建议使用环境变量或加密存储
+
+bos_users:
+  admin_user:
+    username: bos_admin
+    password: Admin@123
+    role: admin
+  normal_user:
+    username: bos_user
+    password: User@123
+    role: normal
+
+admin_users:
+  super_admin:
+    username: super_admin
+    password: SuperAdmin@123
+    role: super_admin
+  hr_admin:
+    username: hr_admin
+    password: HrAdmin@123
+    role: hr
+
+staff_users:
+  employee_01:
+    username: staff_001
+    password: Staff@123
+    employee_id: E001
+    department: 技术部
+  employee_02:
+    username: staff_002
+    password: Staff@123
+    employee_id: E002
+    department: 市场部

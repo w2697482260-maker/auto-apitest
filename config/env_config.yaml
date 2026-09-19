@@ -1,0 +1,58 @@
+# 环境配置文件
+# 当前环境：dev/test/staging/prod
+current_env: test
+
+# 各环境配置
+environments:
+  dev:
+    bos:
+      base_url: https://bos-dev.esop.com
+      timeout: 30
+    admin:
+      base_url: https://admin-dev.esop.com
+      timeout: 30
+    staff:
+      base_url: https://staff-dev.esop.com
+      timeout: 30
+    database:
+      host: dev-db.esop.com
+      port: 3306
+
+  test:
+    bos:
+      base_url: https://bos-test.esop.com
+      timeout: 30
+    admin:
+      base_url: https://admin-test.esop.com
+      timeout: 30
+    staff:
+      base_url: https://staff-test.esop.com
+      timeout: 30
+    database:
+      host: test-db.esop.com
+      port: 3306
+
+  staging:
+    bos:
+      base_url: https://bos-staging.esop.com
+      timeout: 30
+    admin:
+      base_url: https://admin-staging.esop.com
+      timeout: 30
+    staff:
+      base_url: https://staff-staging.esop.com
+      timeout: 30
+    database:
+      host: staging-db.esop.com
+      port: 3306
+
+# 请求通用配置
+request:
+  retry_times: 3
+  retry_interval: 1
+  verify_ssl: false
+
+# 报告配置
+report:
+  allure_title: ESOP接口自动化测试报告
+  allure_description: 股权激励系统接口回归测试

@@ -1,0 +1,71 @@
+# 业务配置文件
+
+# 股票类型配置
+stock_types:
+  hk_us:
+    name: 港美股
+    code: HK_US
+    market:
+      - HK
+      - US
+    currency:
+      - HKD
+      - USD
+    trading_rules:
+      min_unit: 1
+      price_tick: 0.01
+
+  unlisted:
+    name: 未上市
+    code: UNLISTED
+    market:
+      - PRIVATE
+    currency:
+      - CNY
+      - USD
+    trading_rules:
+      min_unit: 1
+      price_tick: 0.01
+
+  a_stock:
+    name: A股
+    code: A_STOCK
+    market:
+      - SH
+      - SZ
+    currency:
+      - CNY
+    trading_rules:
+      min_unit: 100
+      price_tick: 0.01
+
+# 股权计划类型
+plan_types:
+  - RSU  # 限制性股票单位
+  - OPTION  # 期权
+  - SAR  # 股票增值权
+  - ESPP  # 员工持股计划
+
+# 状态配置
+status:
+  plan_status:
+    - DRAFT  # 草稿
+    - PENDING  # 待审批
+    - APPROVED  # 已批准
+    - ACTIVE  # 生效中
+    - EXPIRED  # 已过期
+    - CANCELLED  # 已取消
+
+  grant_status:
+    - GRANTED  # 已授予
+    - VESTING  # 归属中
+    - VESTED  # 已归属
+    - EXERCISED  # 已行权
+    - FORFEITED  # 已失效
+
+# 业务规则
+business_rules:
+  max_grant_amount: 1000000  # 最大授予数量
+  min_grant_amount: 1  # 最小授予数量
+  vesting_periods: [1, 2, 3, 4, 5]  # 归属期（年）
+  cliff_periods: [0, 1, 2]  # 等待期（年）

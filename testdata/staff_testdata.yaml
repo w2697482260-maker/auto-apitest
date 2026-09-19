@@ -1,0 +1,24 @@
+# Staff端测试数据
+
+# 行权测试数据
+exercise_data:
+  - equity_id: "equity_001"
+    exercise_amount: 500
+    expected_status: "SUCCESS"
+
+  - equity_id: "equity_002"
+    exercise_amount: 1000
+    expected_status: "SUCCESS"
+
+# 查询参数
+query_params:
+  my_equity:
+    page: 1
+    page_size: 10
+    status: "VESTED"
+
+  exercise_history:
+    page: 1
+    page_size: 20
+    start_date: "2024-01-01"
+    end_date: "2024-12-31"

@@ -1,0 +1,28 @@
+# 通知配置文件
+
+# 飞书机器人配置
+feishu:
+  enabled: true
+  # 飞书群机器人 Webhook 地址（需要在飞书群里创建自定义机器人获取）
+  webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/a8a90d3b-9a02-4896-85f4-968b1a4522b9"
+
+  # 通知规则
+  notify_on:
+    success: true     # 测试全部通过时通知
+    failure: true     # 有失败用例时通知
+    always: false     # 始终通知
+
+  # @提醒配置
+  mention:
+    all: false        # @所有人
+    users: []         # @指定用户的open_id列表
+    # 示例: ["ou_xxx", "ou_yyy"]
+
+# Jenkins 报告发布配置
+jenkins:
+  # Allure 报告发布目录（Jenkins服务器上的路径）
+  allure_report_path: "/var/jenkins_home/workspace/${JOB_NAME}/reports/allure-report"
+
+  # 报告访问URL（需要配置Jenkins的Allure插件）
+  # 格式: http://your-jenkins-url/job/${JOB_NAME}/${BUILD_NUMBER}/allure
+  report_url_template: "http://jenkins.example.com/job/${JOB_NAME}/${BUILD_NUMBER}/allure"

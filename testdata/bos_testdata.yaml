@@ -1,0 +1,72 @@
+# BOS端测试数据
+
+# 港美股测试数据
+hk_us_plans:
+  - plan_name: "港股RSU计划2024"
+    plan_type: RSU
+    stock_type: HK_US
+    market: HK
+    currency: HKD
+    grant_amount: 10000
+    exercise_price: 50.00
+    vesting_period: 4
+    cliff_period: 1
+
+  - plan_name: "美股OPTION计划2024"
+    plan_type: OPTION
+    stock_type: HK_US
+    market: US
+    currency: USD
+    grant_amount: 5000
+    exercise_price: 100.00
+    vesting_period: 3
+    cliff_period: 0
+
+# 未上市测试数据
+unlisted_plans:
+  - plan_name: "未上市RSU计划2024"
+    plan_type: RSU
+    stock_type: UNLISTED
+    market: PRIVATE
+    currency: CNY
+    grant_amount: 2000
+    exercise_price: 10.00
+    vesting_period: 4
+    cliff_period: 1
+    valuation: 15.50
+
+# A股测试数据
+a_stock_plans:
+  - plan_name: "A股RSU计划2024"
+    plan_type: RSU
+    stock_type: A_STOCK
+    market: SH
+    currency: CNY
+    grant_amount: 10000  # 必须是100的倍数
+    exercise_price: 25.00
+    vesting_period: 3
+    cliff_period: 1
+
+  - plan_name: "A股期权计划2024"
+    plan_type: OPTION
+    stock_type: A_STOCK
+    market: SZ
+    currency: CNY
+    grant_amount: 50000  # 必须是100的倍数
+    exercise_price: 30.00
+    vesting_period: 4
+    cliff_period: 1
+
+# 授予测试数据
+batch_grants:
+  - plan_id: "plan_001"
+    employees:
+      - employee_id: "E001"
+        grant_amount: 1000
+        grant_price: 10.00
+      - employee_id: "E002"
+        grant_amount: 1500
+        grant_price: 10.00
+      - employee_id: "E003"
+        grant_amount: 2000
+        grant_price: 10.00
