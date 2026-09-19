@@ -5,12 +5,10 @@ pipeline {
         choice(name: 'ENV', choices: ['test', 'staging', 'dev'], description: '测试环境')
         choice(name: 'TEST_TYPE', choices: ['all', 'smoke', 'regression', 'bos', 'admin', 'staff'], description: '测试类型')
         choice(name: 'STOCK_TYPE', choices: ['all', 'hk_us', 'unlisted', 'a_stock'], description: '股票类型')
-        string(name: 'FEISHU_WEBHOOK', defaultValue: '', description: '飞书机器人Webhook地址')
     }
 
     environment {
         TEST_ENV = "${params.ENV}"
-        FEISHU_WEBHOOK_URL = "${params.FEISHU_WEBHOOK}"
     }
 
     stages {
@@ -25,9 +23,8 @@ pipeline {
             steps {
                 echo '安装依赖...'
                 sh '''
-                    cd esop-api-automation
-                    python3 -m venv venv
-                    . venv/bin/activate
+                    python3 -m venv .venv
+                    . .venv/bin/activate
                     pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
                 '''
             }
@@ -38,6 +35,7 @@ pipeline {
                 script {
                     echo "测试环境: ${params.ENV}"
                     echo "测试类型: ${params.TEST_TYPE}"
+                    echo "股票类型: ${params.STOCK_TYPE}"
 
                     def markers = ""
                     if (params.TEST_TYPE != 'all') {
@@ -53,8 +51,7 @@ pipeline {
                     }
 
                     sh """
-                        cd esop-api-automation
-                        . venv/bin/activate
+                        . .venv/bin/activate
                         export TEST_ENV=${params.ENV}
                         pytest ${markers} --reruns 1 --reruns-delay 2
                     """
@@ -71,7 +68,7 @@ pipeline {
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'esop-api-automation/reports/allure-results']]
+                        results: [[path: 'reports/allure-results']]
                     ])
                 }
             }
@@ -80,8 +77,6 @@ pipeline {
         stage('飞书通知') {
             steps {
                 script {
-                    // 飞书通知已通过 pytest 插件自动发送
-                    // 配置文件: config/notification_config.yaml
                     echo '飞书通知已通过 pytest 插件自动发送'
                     echo "报告地址: ${BUILD_URL}allure"
                 }
@@ -91,14 +86,13 @@ pipeline {
 
     post {
         always {
-            echo '清理工作空间...'
-            cleanWs()
+            echo '清理工作完成'
         }
         success {
-            echo '✓ 测试执行成功'
+            echo '✅ 测试执行成功'
         }
         failure {
-            echo '✗ 测试执行失败'
+            echo '❌ 测试执行失败'
         }
     }
 }
